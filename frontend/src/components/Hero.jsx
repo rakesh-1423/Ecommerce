@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 
 function Hero() {
   return (
-    <div className="flex flex-col sm:flex-row border border-gray-400">
+    <div className="flex flex-col sm:flex-row border border-gray-40">
       {/* Hero left side */}
       <div className="w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0 ">
         <div className="text-[#414141]">
@@ -11,7 +11,7 @@ function Hero() {
             <p className="w-8 md:w-11 h-0.5 bg-[#414141]"></p>
             <p className="font-medium text-sm md:text-base">OUT BESTSELLERS</p>
           </div>
-          <h1 className="text-3xl sm:py-3 lg:text-5xl leading-relaxed">
+          <h1 className=" prata-font text-3xl sm:py-3 lg:text-5xl leading-relaxed">
             LATEST COLLECTION
           </h1>
           <div className="flex items-center gap-2">

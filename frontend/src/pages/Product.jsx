@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Product({productId = 0}) {
+function Product({productid}) {
 
-    console.log("You are given product id is: ", productId);
+    console.log("You are given product id is: ", productid);
 
   return (
-    <div>Product : {productId}</div>
+    <div>Product : {productid}</div>
   )
 }
 
