@@ -27,7 +27,7 @@ function App() {
         <Route path='/collection' element={<Collection/>} />
         <Route path='/contact' element={<Contect/>} />
         <Route path='/login' element={<Login/>} />
-        <Route path='/order' element={<Order/>} />
+        <Route path='/orders' element={<Order/>} />
         <Route path='/place-order' element={<PlaceOrder/>} />
         <Route path='/product/:productId' element={<Product/>} />
       </Routes>
