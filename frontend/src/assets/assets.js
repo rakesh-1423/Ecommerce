@@ -295,7 +295,7 @@ export const products = [
         price: 150,
         image: [p_img17],
         category: "Men",
-        c: "Bottomwear",
+        subCategory: "Bottomwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716629945448,
         bestseller: false
