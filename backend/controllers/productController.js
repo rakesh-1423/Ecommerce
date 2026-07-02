@@ -57,12 +57,12 @@ const addProduct = async (req, res) => {
     const product = new productModel(productData);
     await product.save();
 
-    // console.log("Product data :", productData);
+    console.log("Product data added :", product.name);
 
-    res.json({ success: true, messsage: "Product Added!" });
+    return res.json({ success: true, message: "Product Added!" });
   } catch (error) {
     console.log("Error while add product ", error);
-    res.json({ error });
+    return res.json({ error });
   }
 };
 
@@ -70,7 +70,7 @@ const addProduct = async (req, res) => {
 const listProduct = async (req, res) => {
   try {
     const allProductList = await productModel.find({});
-    res.json({ success: true, message: allProductList });
+    res.json({ success: true, products:allProductList });
   } catch (error) {
     console.log("Error while list all product : ", error);
     res.json({ success: "false", message: `fail to list product : ${error}` });
@@ -82,14 +82,14 @@ const removeProduct = async (req, res) => {
   try {
 
     if(!req.body.id){
-      res.json({success:false, messsage:"product not available from this id"})
+      return res.json({success:false, messsage:"product not available from this id"})
     }
 
     await productModel.findByIdAndDelete(req.body.id)
-    res.json({success: true, message:"Product removed"});
+    return res.json({success: true, message:"Product removed"});
   } catch (error) {
     console.log("fil to remove product :", error);
-    res.json({ success: true, message: "faild remove product" });
+    return res.json({ success: true, message: "faild remove product" });
   }
 };
 

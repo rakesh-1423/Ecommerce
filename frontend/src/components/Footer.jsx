@@ -6,7 +6,7 @@ function Footer() {
     <div>
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm ">
         <div className="">
-          <img src={assets.logo} alt="Logo" className="mb-5 w-32" />
+          <img src={assets.nova_icon} alt="Logo" className="mb-5 w-32" />
           <p className="w-full md:w-2/3 text-gray-600">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quisquam
             incidunt repellendus ipsa veniam cumque ad, nemo hic voluptates

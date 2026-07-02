@@ -72,7 +72,7 @@ const registerUser = async (req, res) => {
     const token = createToken(user._id);
 
     // send response
-    res.json({ success: true, token});
+    return res.json({ success: true, token});
   } catch (error) {
     console.log("Error while register user ", error);
     return res.json({success: false, message: `Error while register : ${error}`})
@@ -84,19 +84,19 @@ const adminLogin = async (req, res) => {
   try {
     const {email, password} = req.body;
   
-    if(email !== process.env.ADMIN_EMAIL && password !== process.env.ADMIN_PASSWORD){
-      res.json({success: false, message:"Wrong Credential"})
+    if(email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD){
+      return res.json({success: false, message:"Wrong Credential"})
     }
   
     const token = JWT.sign(email+password, process.env.JWT_SECRET);
     if(!token){
-      res.json({success: false, message:"something went wrong token not generate"})
+      return res.json({success: false, message:"something went wrong token not generate"})
     }
   
-    res.json({success: true, token})
+    return res.json({success: true, token})
   } catch (error) {
     console.log("Error white admin authentication ", error);
-    res.json({success:false, message:`Fail admin login : ${error}`})
+    return res.json({success:false, message:`Fail admin login : ${error}`})
   }
 }; 
 

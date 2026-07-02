@@ -5,6 +5,7 @@ const adminAuth = (req, res, next)=>{
         const {token} = req.headers
 
         if(!token){
+            console.log("Token value found :", res.headers);
             return res.json({success:false, message:"Not Authorized Login Again"})
         }
 
@@ -18,7 +19,7 @@ const adminAuth = (req, res, next)=>{
 
     } catch (error) {
         console.log("Error while admin authenticaion",error);
-        res.json({success:false, message:"Authentication fail.."})
+        return res.json({success:false, message:"Authentication fail.."})
     }
 }
 

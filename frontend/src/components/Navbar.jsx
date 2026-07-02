@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to={"/"}>
-        <img src={assets.logo} alt="Logo_img" className="w-32" />
+        <img src={assets.nova_icon} alt="Logo_img" className="w-32" />
       </Link>
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
