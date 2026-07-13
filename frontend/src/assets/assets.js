@@ -74,6 +74,10 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 import nova_icon from './novacart0.png'
+import nova_emty from './novacart1.png'
+import no_order from './No_order.png'
+import user_profile_icon from './user_profile_icon.png'
+import copy_icon from './copy_icon.png'
 
 export const assets = {
     logo,
@@ -94,7 +98,11 @@ export const assets = {
     razorpay_logo,
     stripe_logo,
     cross_icon,
-    nova_icon
+    nova_icon,
+    nova_emty,
+    no_order,
+    user_profile_icon,
+    copy_icon
 }
 
 export const products = [

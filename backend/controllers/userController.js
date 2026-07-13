@@ -79,6 +79,23 @@ const registerUser = async (req, res) => {
   }
 };
 
+// frontend user profile 
+const userProfile = async (req, res) =>{
+  try {
+    const {userId} = req.body;
+  
+    const userData = await userModel.findById(userId).select('-password -cartData')
+
+    // console.log("User data for profile:: ", userData);
+    
+    return res.json({success: true, user:userData})
+    
+  } catch (error) {
+    console.log("Error while fetch userProfile");
+    res.json({success: false, message:error.message})
+  }
+}
+
 // Routes for admin login
 const adminLogin = async (req, res) => {
   try {
@@ -100,4 +117,4 @@ const adminLogin = async (req, res) => {
   }
 }; 
 
-export { loginUser, registerUser, adminLogin };
+export { loginUser, registerUser, adminLogin, userProfile };

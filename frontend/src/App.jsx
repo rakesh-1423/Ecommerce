@@ -13,6 +13,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
   import { ToastContainer, toast } from 'react-toastify';
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/orders' element={<Order/>} />
         <Route path='/place-order' element={<PlaceOrder/>} />
         <Route path='/product/:productId' element={<Product/>} />
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
 
       <Footer/>

@@ -73,7 +73,7 @@ const listProduct = async (req, res) => {
     res.json({ success: true, products:allProductList });
   } catch (error) {
     console.log("Error while list all product : ", error);
-    res.json({ success: "false", message: `fail to list product : ${error}` });
+    res.json({ success: false, message: `fail to list product : ${error}` });
   }
 };
 
