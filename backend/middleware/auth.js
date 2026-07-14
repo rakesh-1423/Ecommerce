@@ -16,7 +16,7 @@ const authUser = async(req, res, next)=>{
         console.log("Rakesh decoded_token: ", token_decode);
         if(token_decode.id){
             req.body.userId = token_decode.id;
-            console.log("successfully ----- userId push in body");
+            // console.log("successfully ----- userId push in body");
         }else{
             console.log("Auth token :::: something went wrong....");
             return ;

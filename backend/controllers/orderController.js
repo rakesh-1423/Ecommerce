@@ -99,18 +99,36 @@ const verifyRazorpay = async (req, res) =>{
         const { userId, razorpay_order_id} = req.body
 
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
+        // console.log("Order info :::", orderInfo);
         if(orderInfo.status === 'paid'){
-            console.log("STATUS PAID RAZORPAY");
+            // console.log("STATUS PAID RAZORPAY");
             await orderModel.findByIdAndUpdate(orderInfo.receipt, {payment:true});
             await userModel.findByIdAndUpdate(userId,{cartData:{}})
             res.json({success: true, message:"Payment successfull"})
         }else{
-            console.log("STATUS NOT PAID BY RAZORPAY");
+            console.log("STATUS: NOT PAID BY RAZORPAY");
             res.json({success: false, message: "Payment failed"})
         }
     } catch (error) {
         console.log("Error while razorpay payment varify:: ", error);
         res.json({success: false, message:error.message})
+    }
+}
+
+// razorPay payment failed/dismiss then order delete
+const orderPaymentFailed = async (req, res) =>{
+    try {
+        const {userId, orderId} = req.body;
+    
+        if(!orderId){
+            return res.jsong({success: false, message: "please provide order id"})
+        }
+    
+        await orderModel.findByIdAndDelete({_id: orderId})
+        res.json({success: true, message: 'Payment failed! So Order Delete'})
+    } catch (error) {
+        console.log("Error while order payment failed order delete: ", error);
+        res.json({success:false, message: error.message})
     }
 }
 
@@ -128,13 +146,9 @@ const allOrders = async (req, res) =>{
 // user order data for frontend
 const userOrders = async (req, res) =>{
     try {
-        console.log("user Order 0");
         const {userId} = req.body;
-        console.log("user Order 1");
     
         const orders = await orderModel.find({ userId })
-    
-        console.log("User order List 3:: ", orders);
 
         res.json({success:true, orders})
     } catch (error) {
@@ -162,4 +176,4 @@ const updateStatus  = async (req, res) =>{
     }
 }
 
-export {verifyRazorpay, placeOrder, placeOrderRazorPay, placeOrderStripe, allOrders, userOrders, updateStatus}
+export {orderPaymentFailed, verifyRazorpay, placeOrder, placeOrderRazorPay, placeOrderStripe, allOrders, userOrders, updateStatus}

@@ -35,22 +35,37 @@ function PlaceOrder() {
       amount: order.amount,
       currency: order.currency,
       name: 'order payment',
-      desciption: 'order payment',
+      description: 'order payment',
       order_id: order.id,
       receipt: order.receipt,
       handler: async (response) => {
-        console.log(response);
         try {
+          console.log("Razorpay payment response ::", response);
           const {data} = await axios.post(backendUrl + '/api/order/verifyRazorpay', response, {headers:{token}})
           console.log("payment data :::", data);
           if(data.success){
             navigate('/orders')
             setCartItems({})
+          }else{
+            console.log("Payment fail:::", response);
           }
         } catch (error) {
-          console.log(error);
+          console.log("Error in initPay handler::", error);
           toast.error(error)
         }
+      },
+      modal: {
+      ondismiss: async function () {
+        try {
+          const {data} = await axios.post(backendUrl + '/api/order/failedPayment', {orderId: order.receipt}, {headers:{token}})
+          if(data.success){
+            console.log("payment failed. order deleted :", data.message);
+            toast.error("Payment cancelled.");
+          }
+        } catch (error) {
+          console.log("error while payment failed, order delte :", error);
+        }
+      }
       }
     }
 
@@ -99,7 +114,7 @@ function PlaceOrder() {
 
         case 'razorpay':
           const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, {headers:{token}})
-
+          console.log("Razorpay order save and give response:::", responseRazorpay);
           if(responseRazorpay.data.success){
             intiPay(responseRazorpay.data.order);
           }else{
